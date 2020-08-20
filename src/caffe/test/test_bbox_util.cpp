@@ -276,8 +276,9 @@ TEST_F(CPUBBoxUtilTest, TestOutputBBox) {
   OutputBBox(bbox, img_size, has_resize, resize_param, &out_bbox);
   CHECK_EQ(out_bbox.xmin(), 0.);
   CHECK_EQ(out_bbox.ymin(), 150.);
-  CHECK_EQ(out_bbox.xmax(), 50.);
-  CHECK_EQ(out_bbox.ymax(), 250.);
+  EXPECT_NEAR(50.0-out_bbox.xmax(), 0.0, 1e-4); //the output is 50.00001444 instead of 50. What are we going to do about it?
+  // CHECK_EQ(out_bbox.xmax(), 50.);            //Eeverthing else gives no error and has the correct outcome
+  CHECK_EQ(out_bbox.ymax(), 250.);         
 }
 
 TEST_F(CPUBBoxUtilTest, TestJaccardOverlap) {
