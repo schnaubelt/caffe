@@ -69,6 +69,16 @@ private:\
 // is executed we will see a fatal log.
 #define NOT_IMPLEMENTED LOG(FATAL) << "Not Implemented Yet"
 
+// Supporting OpenCV4
+#if (CV_MAJOR_VERSION == 4)
+#define CV_LOAD_IMAGE_COLOR cv::IMREAD_COLOR
+#define CV_LOAD_IMAGE_GRAYSCALE cv::IMREAD_GRAYSCALE
+#define CV_CAP_PROP_FRAME_COUNT cv::CAP_PROP_FRAME_COUNT
+#define CV_CAP_PROP_POS_FRAMES cv::CAP_PROP_POS_FRAMES
+#define CV_FILLED cv::FILLED
+#define CV_FOURCC cv::VideoWriter::fourcc
+#endif
+
 // See PR #1236
 namespace cv { class Mat; }
 
