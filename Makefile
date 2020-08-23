@@ -198,6 +198,10 @@ ifeq ($(USE_OPENCV), 1)
 		LIBRARIES += opencv_imgcodecs opencv_videoio
 	endif
 
+	ifeq ($(OPENCV_VERSION), 4)
+		LIBRARIES += opencv_imgcodecs opencv_videoio
+	endif
+
 endif
 PYTHON_LIBRARIES ?= boost_python python2.7
 WARNINGS := -Wall -Wno-sign-compare
@@ -413,7 +417,13 @@ LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
 
 USE_PKG_CONFIG ?= 0
 ifeq ($(USE_PKG_CONFIG), 1)
-	PKG_CONFIG := $(shell pkg-config opencv --libs)
+	ifeq ($(OPENCV_VERSION), 3)
+		PKG_CONFIG := $(shell pkg-config opencv --libs)
+	endif
+
+	ifeq ($(OPENCV_VERSION), 4)
+		PKG_CONFIG := $(shell pkg-config opencv4 --libs)
+	endif
 else
 	PKG_CONFIG :=
 endif
