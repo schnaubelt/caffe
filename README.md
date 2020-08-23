@@ -1,3 +1,8 @@
+## Q-engineering:
+Modified code (include/caffe/common.hpp and src/caffe/util/im_transforms.cpp) for OpenCV 4
+Modified Makefile for OpenCV 4
+Add custom Makefile.config for Raspberry Pi 32OS - 64OS - Ubuntu 18.04 - Ubuntu 20.04
+
 # SSD: Single Shot MultiBox Detector
 
 [![Build Status](https://travis-ci.org/weiliu89/caffe.svg?branch=ssd)](https://travis-ci.org/weiliu89/caffe)
