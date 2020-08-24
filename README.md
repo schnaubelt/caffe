@@ -1,10 +1,11 @@
 ## Q-engineering:
-Modified for OpenCV 4:
+Modified for OpenCV 4 and Python3:
 - include/caffe/common.hpp<br/>
 - src/caffe/util/im_transforms.cpp<br/>
 - Makefile<br/>
 
 Add custom Makefile.config for Raspberry Pi 32OS - 64OS - Ubuntu 18.04 - Ubuntu 20.04<br/>
+We strongly advise you to follow this guide for the [Raspberry Pi 4](https://qengineering.eu/install-caffe-on-raspberry-pi-4.html) or [PC with Ubuntu](https://qengineering.eu/install-caffe-on-ubuntu-20.04-with-opencv-4.4.html)
 
 # SSD: Single Shot MultiBox Detector
 
