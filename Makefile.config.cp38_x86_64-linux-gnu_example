@@ -77,7 +77,7 @@ BLAS := open
 #		$(ANACONDA_HOME)/lib/python2.7/site-packages/numpy/core/include \
 
 # Uncomment to use Python 3 (default is Python 2)
-PYTHON_LIBRARIES := boost_python3 python3.8
+PYTHON_LIBRARIES := boost_python38 python3.8
 PYTHON_INCLUDE := /usr/include/python3.8 \
                  /usr/lib/python3/dist-packages/numpy/core/include
 
