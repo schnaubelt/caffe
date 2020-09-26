@@ -13,7 +13,7 @@ Fixed for the obsolete cuDNN API calls:<br/>
 - cudnnGetConvolutionBackwardFilterAlgorithm<br/>
 - cudnnGetConvolutionBackwardDataAlgorithm<br/>
 
-giving errors like CUDNN_CONVOLUTION_FWD_SPECIFY_WORKSPACE_LIMIT was not declared in this scope.
+generating errors like CUDNN_CONVOLUTION_FWD_SPECIFY_WORKSPACE_LIMIT was not declared in this scope.
 
 # SSD: Single Shot MultiBox Detector
 
