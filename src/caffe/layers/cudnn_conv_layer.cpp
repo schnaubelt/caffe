@@ -111,8 +111,8 @@ void CuDNNConvolutionLayer<Dtype>::Reshape(
   int RetCnt;
   bool found_conv_algorithm;
   size_t free_memory, total_memory;
-  cudnnConvolutionFwdAlgoPerf_t     *fwd_algo_pref_      = new cudnnConvolutionFwdAlgoPerf_t[4];
-  cudnnConvolutionBwdDataAlgoPerf_t *bwd_data_algo_pref_ = new cudnnConvolutionBwdDataAlgoPerf_t[4];
+  cudnnConvolutionFwdAlgoPerf_t     fwd_algo_pref_[4];
+  cudnnConvolutionBwdDataAlgoPerf_t bwd_data_algo_pref_[4];
 
   //get memory sizes
   cudaMemGetInfo(&free_memory, &total_memory);
@@ -160,8 +160,15 @@ void CuDNNConvolutionLayer<Dtype>::Reshape(
       }
     }
     if(!found_conv_algorithm) LOG(ERROR) << "cuDNN did not return a suitable algorithm for convolution.";
+    else{
+	// choose backward algorithm for filter
+        // for better or worse, just a fixed constant due to the missing 
+        // cudnnGetConvolutionBackwardFilterAlgorithm in cuDNN version 8.0
+	bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_0;
+	//twice the amount of the forward search to be save     
+        workspace_bwd_filter_sizes_[i] = 2*workspace_fwd_sizes_[i];
+    }
 
-    // cudnnGetConvolutionBackwardFilterAlgorithm is not available in cuDNN 8 anymore.
     // choose backward algo for data
     CUDNN_CHECK(cudnnGetConvolutionBackwardDataAlgorithm_v7(handle_[0],
       filter_desc_, 
@@ -185,23 +192,6 @@ void CuDNNConvolutionLayer<Dtype>::Reshape(
       }
     }
     if(!found_conv_algorithm) LOG(ERROR) << "cuDNN did not return a suitable algorithm for convolution.";
-    else{
-	// choose backward algorithm for filter
-        // for better or worse, just a copy of the data algorithm due to the missing 
-        // cudnnGetConvolutionBackwardFilterAlgorithm
-	if(bwd_data_algo_[i]==CUDNN_CONVOLUTION_BWD_DATA_ALGO_0) 
-          bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_0;
-	if(bwd_data_algo_[i]==CUDNN_CONVOLUTION_BWD_DATA_ALGO_1) 
-          bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_1;
-	if(bwd_data_algo_[i]==CUDNN_CONVOLUTION_BWD_DATA_ALGO_FFT) 
-          bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_FFT;
-	if(bwd_data_algo_[i]==CUDNN_CONVOLUTION_BWD_DATA_ALGO_FFT_TILING) 
-          bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_FFT_TILING;
-	if(bwd_data_algo_[i]==CUDNN_CONVOLUTION_BWD_DATA_ALGO_COUNT) 
-          bwd_filter_algo_[i] = CUDNN_CONVOLUTION_BWD_FILTER_ALGO_COUNT;
-
-        workspace_bwd_filter_sizes_[i] = workspace_bwd_data_sizes_[i];
-    }
 #else
     // choose forward and backward algorithms + workspace(s)
     CUDNN_CHECK(cudnnGetConvolutionForwardAlgorithm(handle_[0],
@@ -305,10 +295,6 @@ void CuDNNConvolutionLayer<Dtype>::Reshape(
     cudnn::setTensor4dDesc<Dtype>(&bias_desc_,
         1, this->num_output_ / this->group_, 1, 1);
   }
-#if CUDNN_VERSION_MIN(8, 0, 0)
-  delete[] fwd_algo_pref_;
-  delete[] bwd_data_algo_pref_;
-#endif
 }
 
 template <typename Dtype>
