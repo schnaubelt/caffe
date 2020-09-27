@@ -2,6 +2,7 @@
 Modified for OpenCV 4, cuDNN 8 and Python3:
 - include/caffe/common.hpp<br/>
 - src/caffe/util/im_transforms.cpp<br/>
+- src/caffe/layers/cudnn_conv_layer.cpp<br/>
 - Makefile<br/>
 
 Add custom Makefile.config for Raspberry Pi 32OS - 64OS - Ubuntu 18.04 - Ubuntu 20.04 - Jetson Nano<br/>
