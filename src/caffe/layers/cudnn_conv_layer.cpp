@@ -232,8 +232,8 @@ void CuDNNConvolutionLayer<Dtype>::Reshape(
     CUDNN_CHECK(cudnnGetConvolutionBackwardDataWorkspaceSize(handle_[0],
           filter_desc_, top_descs_[i], conv_descs_[i], bottom_descs_[i],
           bwd_data_algo_[i], &workspace_bwd_data_sizes_[i]) );
-  }
 #endif
+  }
   // reduce over all workspace sizes to get a maximum to allocate / reallocate
   size_t total_workspace_fwd = 0;
   size_t total_workspace_bwd_data = 0;
