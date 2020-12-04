@@ -19,7 +19,7 @@ generating errors like CUDNN_CONVOLUTION_FWD_SPECIFY_WORKSPACE_LIMIT was not dec
 ### December 2020 update:
 cudnn_conv_layer.cpp:
 - fixed typo (`#endif } → } #endif`)
-- replace 'CUDNN_CONVOLUTION_BWD_FILTER_ALGO_1 → CUDNN_CONVOLUTION_BWD_FILTER_ALGO_0' due to CUDNN_STATUS_SUCCESS (4 vs. 0) CUDNN_STATUS_INTERNAL_ERROR issues <br/>
+- replaced 'CUDNN_CONVOLUTION_BWD_FILTER_ALGO_1 → CUDNN_CONVOLUTION_BWD_FILTER_ALGO_0' due to CUDNN_STATUS_SUCCESS (4 vs. 0) CUDNN_STATUS_INTERNAL_ERROR issues <br/>
 
 math_functions.cu:<br/>
 
