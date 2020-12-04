@@ -1,4 +1,5 @@
-## Q-engineering:
+# Q-engineering:
+## This is the SSD branch of weiliu89/caffe 
 Modified for OpenCV 4, cuDNN 8 and Python3:
 - include/caffe/common.hpp<br/>
 - src/caffe/util/im_transforms.cpp<br/>
@@ -15,6 +16,14 @@ Fixed for the obsolete cuDNN API calls:<br/>
 - cudnnGetConvolutionBackwardDataAlgorithm<br/>
 
 generating errors like CUDNN_CONVOLUTION_FWD_SPECIFY_WORKSPACE_LIMIT was not declared in this scope.
+### December 2020 update:
+cudnn_conv_layer.cpp:
+- fixed typo (`#endif } → } #endif`)
+- replace 'CUDNN_CONVOLUTION_BWD_FILTER_ALGO_1 → CUDNN_CONVOLUTION_BWD_FILTER_ALGO_0' due to CUDNN_STATUS_SUCCESS (4 vs. 0) CUDNN_STATUS_INTERNAL_ERROR issues <br/>
+
+math_functions.cu:<br/>
+
+- line 1: replace `<math_functions.h> → <cuda_runtime.h>` <br/>
 
 # SSD: Single Shot MultiBox Detector
 
