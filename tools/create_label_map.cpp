@@ -43,14 +43,14 @@ int main(int argc, char** argv) {
   namespace gflags = google;
 #endif
 
-  gflags::SetUsageMessage("Read in pairs label names and optionally ids and "
+  google::SetUsageMessage("Read in pairs label names and optionally ids and "
         "display names and store them in LabelMap proto buffer.\n"
         "Usage:\n"
         "    create_label_map [FLAGS] MAPFILE OUTFILE\n");
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 3) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/create_label_map");
+    google::ShowUsageWithFlagsRestrict(argv[0], "tools/create_label_map");
     return 1;
   }
 

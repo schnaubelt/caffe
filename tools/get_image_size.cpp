@@ -38,13 +38,13 @@ int main(int argc, char** argv) {
   namespace gflags = google;
 #endif
 
-  gflags::SetUsageMessage("Get sizes of a set of images.\n"
+  google::SetUsageMessage("Get sizes of a set of images.\n"
         "Usage:\n"
         "    get_image_size ROOTFOLDER/ LISTFILE OUTFILE\n");
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 4) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/get_image_size");
+    google::ShowUsageWithFlagsRestrict(argv[0], "tools/get_image_size");
     return 1;
   }
 

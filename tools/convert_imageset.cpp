@@ -53,16 +53,16 @@ int main(int argc, char** argv) {
   namespace gflags = google;
 #endif
 
-  gflags::SetUsageMessage("Convert a set of images to the leveldb/lmdb\n"
+  google::SetUsageMessage("Convert a set of images to the leveldb/lmdb\n"
         "format used as input for Caffe.\n"
         "Usage:\n"
         "    convert_imageset [FLAGS] ROOTFOLDER/ LISTFILE DB_NAME\n"
         "The ImageNet dataset for the training demo is at\n"
         "    http://www.image-net.org/download-images\n");
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 4) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/convert_imageset");
+    google::ShowUsageWithFlagsRestrict(argv[0], "tools/convert_imageset");
     return 1;
   }
 

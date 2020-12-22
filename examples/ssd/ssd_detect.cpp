@@ -250,13 +250,13 @@ int main(int argc, char** argv) {
   namespace gflags = google;
 #endif
 
-  gflags::SetUsageMessage("Do detection using SSD mode.\n"
+  google::SetUsageMessage("Do detection using SSD mode.\n"
         "Usage:\n"
         "    ssd_detect [FLAGS] model_file weights_file list_file\n");
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 4) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "examples/ssd/ssd_detect");
+    google::ShowUsageWithFlagsRestrict(argv[0], "examples/ssd/ssd_detect");
     return 1;
   }
 

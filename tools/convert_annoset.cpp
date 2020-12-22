@@ -72,14 +72,14 @@ int main(int argc, char** argv) {
   namespace gflags = google;
 #endif
 
-  gflags::SetUsageMessage("Convert a set of images and annotations to the "
+  google::SetUsageMessage("Convert a set of images and annotations to the "
         "leveldb/lmdb format used as input for Caffe.\n"
         "Usage:\n"
         "    convert_annoset [FLAGS] ROOTFOLDER/ LISTFILE DB_NAME\n");
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 4) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/convert_annoset");
+    google::ShowUsageWithFlagsRestrict(argv[0], "tools/convert_annoset");
     return 1;
   }
 

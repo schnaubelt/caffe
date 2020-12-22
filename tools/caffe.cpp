@@ -425,9 +425,9 @@ int main(int argc, char** argv) {
   // Print output to stderr (while still logging).
   FLAGS_alsologtostderr = 1;
   // Set version
-  gflags::SetVersionString(AS_STRING(CAFFE_VERSION));
+  google::SetVersionString(AS_STRING(CAFFE_VERSION));
   // Usage message.
-  gflags::SetUsageMessage("command line brew\n"
+  google::SetUsageMessage("command line brew\n"
       "usage: caffe <command> <args>\n\n"
       "commands:\n"
       "  train           train or finetune a model\n"
@@ -448,6 +448,6 @@ int main(int argc, char** argv) {
     }
 #endif
   } else {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/caffe");
+    google::ShowUsageWithFlagsRestrict(argv[0], "tools/caffe");
   }
 }
